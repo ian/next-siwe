@@ -5,12 +5,10 @@ import {
   useEffect,
   useState
 } from "react"
-import useCookie, { getCookie } from "react-use-cookie"
 import { useAccount, useSigner } from "wagmi"
 
 import { createSiweMessage } from "../client"
-
-const KEY = "__token"
+import { useCookie } from "../utils/token"
 
 const Context = createContext({
   isLoading: true,
@@ -33,21 +31,19 @@ export function useSIWE(): UseSIWE {
   return useContext(Context)
 }
 
-export function getToken() {
-  return getCookie(KEY)
-}
-
 type Auth = {
   address: string
 }
 
 type Props = {
+  text?: string
   uri?: string
   children: any
   onToken?: (string) => void
 }
 
 export const SIWEProvider = ({
+  text = "Sign in with Ethereum to the app.",
   uri = "/api/siwe",
   children,
   onToken
@@ -56,15 +52,12 @@ export const SIWEProvider = ({
   const { data: signer } = useSigner()
 
   const [isLoading, setLoading] = useState(true)
-  const [token, setToken] = useCookie(KEY)
+  const [token, setToken] = useCookie()
   const [auth, setAuth] = useState<Auth>()
 
   const login = async () => {
     setLoading(true)
-    const message = createSiweMessage(
-      address,
-      "Sign in with Ethereum to the app."
-    )
+    const message = createSiweMessage(address, text)
 
     return signer
       .signMessage(message)

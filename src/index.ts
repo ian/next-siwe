@@ -4,7 +4,11 @@ import me from "./endpoints/me"
 import nonce from "./endpoints/nonce"
 import verify from "./endpoints/verify"
 
-export function createSIWEHandler(opts) {
+export { decode } from "./utils/decode"
+export { getToken } from "./utils/token"
+export { useSIWE, SIWEProvider } from "./provider/SIWEProvider"
+
+export function nextSIWE(opts) {
   const { secret } = opts
 
   return async function SIWE(req: NextApiRequest, reply: NextApiResponse) {
