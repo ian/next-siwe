@@ -17,6 +17,7 @@
     }
   },
   "scripts": {
+    "clean": "rimraf dist",
     "build": "tsup --clean --external next --external react --external ethers --external wagmi src/index.ts && tsc --emitDeclarationOnly",
     "build:watch": "nodemon --exec \"pnpm build\""
   },
@@ -37,7 +38,9 @@
   "devDependencies": {
     "@types/node": "^17.0.12",
     "@types/react": "17.0.37",
+    "ethers": "5.5.1",
     "next": "^12.1.6",
+    "rimraf": "^3.0.2",
     "tsup": "^6.2.3",
     "typescript": "^4.6.3",
     "wagmi": "^0.6.8"
