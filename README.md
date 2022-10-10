@@ -64,3 +64,61 @@ const Auth = () => {
 ```
 
 ... and you're good to go 🎉
+
+## API Reference
+
+`useSIWE()`
+
+Main React hook for SIWE.
+
+```
+{
+  isLoading: boolean
+  isAuthenticated: boolean
+  address?: string
+  token?: string
+  login: () => Promise<void>
+  logout: any
+}
+```
+
+`SIWEProvider`
+
+Provider for SIWE.
+
+Properties:
+
+- `text` = "Sign in with Ethereum to the app."
+- `uri` = "/api/siwe"
+- `onToken`: (token:string) => void
+
+`getToken`
+
+Returns the cookie'd token for the current user.
+
+`useToken`
+
+Hook for working with the token.
+
+```
+const [token, setToken] = useToken()
+```
+
+`decode`
+
+Decode the token into JSON payload.
+
+```js
+// in request handler
+
+if (req.headers.authorization) {
+  const token = req.headers.authorization.split(" ")[1]
+  const auth = await decode(token)
+
+  // {
+  //   sessionToken: UUID,
+  //   address: 0x...,
+  //   expires: 1665362739
+  // }
+}
+```

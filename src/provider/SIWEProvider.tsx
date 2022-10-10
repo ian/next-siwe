@@ -8,7 +8,7 @@ import {
 import { useAccount, useSigner } from "wagmi"
 
 import { createSiweMessage } from "../client"
-import { useCookie } from "../utils/token"
+import { useToken } from "../utils/token"
 
 const Context = createContext({
   isLoading: true,
@@ -52,7 +52,7 @@ export const SIWEProvider = ({
   const { data: signer } = useSigner()
 
   const [isLoading, setLoading] = useState(true)
-  const [token, setToken] = useCookie()
+  const [token, setToken] = useToken()
   const [auth, setAuth] = useState<Auth>()
 
   const login = async () => {
