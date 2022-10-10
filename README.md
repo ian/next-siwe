@@ -2,7 +2,7 @@
 
 Sign in with Ethereum for Next.js. Read more on SIWE: [https://github.com/spruceid/siwe](https://github.com/spruceid/siwe)
 
-![modal.png](modal.png)
+![https://github.com/ian/next-siwe/raw/main/modal.png](https://github.com/ian/next-siwe/raw/main/modal.png)
 
 ## Getting Started
 
