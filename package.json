@@ -10,6 +10,9 @@
     ".": "./dist/index.js",
     "./client": "./dist/client.js"
   },
+  "files": [
+    "dist"
+  ],
   "typesVersions": {
     "*": {
       "client": [
