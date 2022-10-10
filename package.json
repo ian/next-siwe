@@ -6,10 +6,6 @@
   "author": "Ian Hunter <ian@ianh.xyz>",
   "license": "MIT",
   "main": "dist/index.js",
-  "exports": {
-    ".": "./dist/index.js",
-    "./client": "./dist/client.js"
-  },
   "files": [
     "dist"
   ],
@@ -21,7 +17,7 @@
     }
   },
   "scripts": {
-    "build": "tsup --clean --external next --external react --external ethers --external wagmi src/index.ts src/client.ts && tsc --emitDeclarationOnly",
+    "build": "tsup --clean --external next --external react --external ethers --external wagmi src/index.ts && tsc --emitDeclarationOnly",
     "build:watch": "nodemon --exec \"pnpm build\""
   },
   "dependencies": {

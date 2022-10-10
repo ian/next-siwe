@@ -7,7 +7,7 @@ import {
 } from "react"
 import { useAccount, useSigner } from "wagmi"
 
-import { createSiweMessage } from "../client"
+import { createSiweMessage } from "../utils/message"
 import { useToken } from "../utils/token"
 
 const Context = createContext({

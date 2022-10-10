@@ -22,7 +22,7 @@
     "module": "esnext",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "outDir": "./dist"
   },
   "include": ["src", "next-env.d.ts"],
