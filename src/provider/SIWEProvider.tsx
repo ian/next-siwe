@@ -108,9 +108,18 @@ export const SIWEProvider = ({
 
   useEffect(() => {
     if (!address) logout()
-    // If wallet changes, lets log them out unless they request not to.
-    if (address != auth?.address && !staySignedInOnWalletChange) logout()
   }, [address, logout])
+
+  useEffect(() => {
+    // If wallet changes, lets log them out unless they request not to.
+    if (
+      address &&
+      auth &&
+      address != auth?.address &&
+      !staySignedInOnWalletChange
+    )
+      logout()
+  }, [address, auth])
 
   const value = {
     isLoading,
