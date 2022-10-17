@@ -40,11 +40,13 @@ type Props = {
   uri?: string
   children: any
   onToken?: (string) => void
+  staySignedInOnWalletChange?: boolean
 }
 
 export const SIWEProvider = ({
   text = "Sign in with Ethereum to the app.",
   uri = "/api/siwe",
+  staySignedInOnWalletChange = false,
   children,
   onToken
 }: Props) => {
@@ -106,6 +108,8 @@ export const SIWEProvider = ({
 
   useEffect(() => {
     if (!address) logout()
+    // If wallet changes, lets log them out unless they request not to.
+    if (address != auth?.address && !staySignedInOnWalletChange) logout()
   }, [address, logout])
 
   const value = {
