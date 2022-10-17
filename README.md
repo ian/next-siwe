@@ -91,6 +91,7 @@ Properties:
 - `text` = "Sign in with Ethereum to the app."
 - `uri` = "/api/siwe"
 - `onToken`: (token:string) => void
+- `staySignedInOnWalletChange`: Don't log the user out when wallet changes (default false)
 
 `getToken`
 
