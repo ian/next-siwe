@@ -5,6 +5,10 @@
   "keywords": [],
   "author": "Ian Hunter <ian@ianh.xyz>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ian/next-siwe.git"
+  },
   "main": "dist/index.js",
   "files": [
     "dist"
