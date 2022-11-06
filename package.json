@@ -1,6 +1,6 @@
 {
   "name": "next-siwe",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Sign in with Ethereum for Next.js",
   "keywords": [],
   "author": "Ian Hunter <ian@ianh.xyz>",
