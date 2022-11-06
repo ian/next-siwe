@@ -8,13 +8,13 @@ Sign in with Ethereum for Next.js. Read more on [SIWE](https://github.com/spruce
 
 Install next-siwe and dependencies:
 
-```
+```sh
 npm i next-siwe wagmi ethers
 ```
 
 Create the SIWE endpoint at ./pages/api/siwe/[siwe].ts
 
-```
+```tsx
 import { nextSIWE } from "next-siwe"
 
 export default nextSIWE({
@@ -24,7 +24,7 @@ export default nextSIWE({
 
 Configure the provider inside of WagmiConfig:
 
-```
+```tsx
 function App({ Component, pageProps }) {
   return (
     <WagmiConfig client={client}>
@@ -38,8 +38,8 @@ function App({ Component, pageProps }) {
 
 Use it in your pages/components:
 
-```
-import { useAccount, useConnect } from 'wagmi'
+```tsx
+import { useAccount, useConnect } from "wagmi"
 import { useSIWE } from "next-siwe"
 
 const Auth = () => {
@@ -57,7 +57,8 @@ const Auth = () => {
 
   return (
     <span>
-      Connected to {activeConnector.name} <button onClick={logout}>Disconnect</button>
+      Connected to {activeConnector.name}{" "}
+      <button onClick={logout}>Disconnect</button>
     </span>
   )
 }
@@ -71,7 +72,7 @@ const Auth = () => {
 
 Main React hook for SIWE.
 
-```
+```json
 {
   isLoading: boolean
   isAuthenticated: boolean
@@ -109,7 +110,7 @@ const [token, setToken] = useToken()
 
 Decode the token into JSON payload.
 
-```js
+```ts
 // in request handler
 
 if (req.headers.authorization) {
