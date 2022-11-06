@@ -1,10 +1,8 @@
-import type { NextApiRequest, NextApiResponse } from "next"
 import { generateNonce } from "siwe"
+import { EndpointParams } from "../types"
 
-export default async function nonce(
-  req: NextApiRequest,
-  reply: NextApiResponse
-) {
-  reply.setHeader("Content-Type", "text/plain")
-  reply.send(generateNonce())
+export default async function nonce(params: EndpointParams) {
+  const { res } = params
+  res.setHeader("Content-Type", "text/plain")
+  res.send(generateNonce())
 }

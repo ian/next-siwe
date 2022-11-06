@@ -22,6 +22,7 @@ export type UseSIWE = {
   isLoading: boolean
   isAuthenticated: boolean
   address?: string
+  session?: Session
   token?: string
   login: () => Promise<void>
   logout: any
@@ -33,9 +34,13 @@ export function useSIWE(): UseSIWE {
 
 type Auth = {
   address: string
+  session: Session
 }
 
-type Props = {
+// Eventually I want to convert this to a generic
+type Session = object
+
+type SIWEProviderProps = {
   text?: string
   uri?: string
   children: any
@@ -49,7 +54,7 @@ export const SIWEProvider = ({
   staySignedInOnWalletChange = false,
   children,
   onToken
-}: Props) => {
+}: SIWEProviderProps) => {
   const { address } = useAccount()
   const { data: signer } = useSigner()
 
@@ -94,7 +99,8 @@ export const SIWEProvider = ({
         .then((res) => res.json())
         .then((res) => {
           if (!res.error) {
-            setAuth(res)
+            // Ensure object gets rewritten
+            setAuth({ ...res })
           }
         })
         .then(() => onToken?.(token))
@@ -125,6 +131,7 @@ export const SIWEProvider = ({
     isLoading,
     isAuthenticated: !!token,
     address: auth?.address,
+    session: auth?.session,
     token,
     login,
     logout

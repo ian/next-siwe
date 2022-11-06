@@ -1,14 +1,11 @@
 import Day from "dayjs"
 import jwt from "jsonwebtoken"
-import type { NextApiRequest, NextApiResponse } from "next"
 import { SiweMessage } from "siwe"
 import { v4 as uuid } from "uuid"
+import { EndpointParams } from "../types"
 
-export default async function verify(
-  req: NextApiRequest,
-  reply: NextApiResponse,
-  key: string
-) {
+export default async function verify(params: EndpointParams) {
+  const { req, res, opts } = params
   const { message, signature } = req.body
 
   try {
@@ -22,11 +19,11 @@ export default async function verify(
       address,
       expires: Day().add(1, "day").toISOString()
     }
-    const token = jwt.sign(payload, key)
+    const token = jwt.sign(payload, opts.secret)
 
-    reply.status(200).send(token)
+    res.status(200).send(token)
   } catch (err) {
     console.error(err)
-    reply.status(401).send("Unauthorized")
+    res.status(401).send("Unauthorized")
   }
 }

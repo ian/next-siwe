@@ -3,30 +3,31 @@ import type { NextApiRequest, NextApiResponse } from "next"
 import me from "./endpoints/me"
 import nonce from "./endpoints/nonce"
 import verify from "./endpoints/verify"
+import { SIWEOpts } from "./types"
 
 export { decode } from "./utils/decode"
 export { getToken } from "./utils/token"
 export { useSIWE, SIWEProvider } from "./provider/SIWEProvider"
 
-export function nextSIWE(opts) {
-  const { secret } = opts
+export * from "./types"
 
-  return async function SIWE(req: NextApiRequest, reply: NextApiResponse) {
+export function nextSIWE(opts: SIWEOpts) {
+  return async function SIWE(req: NextApiRequest, res: NextApiResponse) {
     const tokens = req.url.split("/")
     const path = tokens[tokens.length - 1]
 
     switch (path) {
       case "me":
-        me(req, reply)
+        await me({ req, res, opts })
         break
       case "nonce":
-        await nonce(req, reply)
+        await nonce({ req, res, opts })
         break
       case "verify":
-        await verify(req, reply, secret)
+        await verify({ req, res, opts })
         break
       default:
-        reply.status(404).send("Not Found")
+        res.status(404).send("Not Found")
     }
   }
 }
