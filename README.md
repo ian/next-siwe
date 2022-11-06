@@ -72,7 +72,7 @@ const Auth = () => {
 
 Main React hook for SIWE.
 
-```json
+```ts
 {
   isLoading: boolean
   isAuthenticated: boolean
