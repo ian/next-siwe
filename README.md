@@ -25,6 +25,8 @@ export default nextSIWE({
 Configure the provider inside of WagmiConfig:
 
 ```tsx
+import { SIWEProvider } from "next-siwe"
+
 function App({ Component, pageProps }) {
   return (
     <WagmiConfig client={client}>
